@@ -1,0 +1,375 @@
+% !TEX program = lualatex
+\documentclass[a4paper,11pt]{extarticle}
+
+\usepackage{fontspec}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[margin=18mm]{geometry}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+% ------------------------------------------------
+% Fonts and hyperlinks
+% ------------------------------------------------
+
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{TeX Gyre Pagella}
+
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+
+\hypersetup{
+    colorlinks=true,
+    breaklinks=true,
+    pdftitle={Jacopo Gonzini - CV},
+    pdfauthor={Jacopo Gonzini},
+    pdfpagemode=UseNone,
+    urlcolor=linkcolour,
+    linkcolor=linkcolour
+}
+
+% ------------------------------------------------
+% Global layout
+% ------------------------------------------------
+
+\pagestyle{empty}
+\raggedbottom
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{3pt}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Main body used for descriptions
+\newcommand{\cvdetail}{\fontsize{11pt}{14pt}\selectfont}
+
+% Dates
+\newcommand{\cvdate}[1]{%
+    {\fontsize{9pt}{10.5pt}\selectfont\textsc{#1}}%
+}
+
+% Consistent small gap between entries
+\newcommand{\entrygap}{\vspace{3pt}}
+
+% ------------------------------------------------
+% Sections
+% ------------------------------------------------
+
+\titleformat{\section}
+    {\large\scshape\raggedright}
+    {}
+    {0em}
+    {}
+    [\titlerule]
+
+\titlespacing*{\section}
+    {0pt}
+    {10pt}
+    {5pt}
+
+% ------------------------------------------------
+% Compact CV lists
+% ------------------------------------------------
+
+\newenvironment{cvitems}
+{%
+    \begin{itemize}[
+        label={-},
+        leftmargin=1em,
+        rightmargin=0pt,
+        labelsep=0.4em,
+        itemindent=0pt,
+        topsep=0pt,
+        itemsep=3pt,
+        parsep=0pt,
+        partopsep=0pt
+    ]
+}
+{%
+    \end{itemize}
+}
+
+% ------------------------------------------------
+% Document
+% ------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------
+% Header
+% ------------------------------------------------
+
+\begin{center}
+    {\fontsize{22pt}{24pt}\selectfont
+        Jacopo \textsc{Gonzini}
+    }
+
+    \vspace{2pt}
+
+    \small
+    Milan, Italy
+    \quad | \quad
+    \href{https://www.linkedin.com/in/jacopo-gonzini-7946b5240}{LinkedIn}
+    \quad | \quad
+    \href{https://github.com/0jach}{GitHub}
+\end{center}
+
+\vspace{-2pt}
+
+% ------------------------------------------------
+% Education
+% ------------------------------------------------
+
+\section{Education}
+
+\textbf{Bachelor's Degree in \textsc{Economics, Management and Computer Science}}
+\hfill Expected 2028
+
+\textbf{Bocconi University}, Milan (2025 - Present)
+\quad | \quad
+\textbf{Weighted Grade Average: 29.4/30}
+
+{\cvdetail
+Interdisciplinary degree combining economics and management with computer science,
+statistics, and machine learning. Developing a strong foundation in quantitative
+modelling, data analysis, programming, and the application of computational methods
+to economic and financial problems.
+\par}
+
+\vspace{1pt}
+
+{\cvdetail
+\textbf{Relevant Coursework:}
+Advanced Mathematics \& Statistics
+(Linear Algebra, Probability \& Statistical Inference),
+Computer Programming \& Numerical Optimization,
+Macroeconomics,
+Mathematics \& Statistics,
+Computer Science,
+Microeconomics.
+\par}
+
+\entrygap
+
+\textbf{Liceo Scientifico ``D. Bramante''}, Magenta
+\hfill
+\cvdate{July 2025}
+
+{\cvdetail
+Took part in regional Science Olympiads, ranking among the top 5\% of Lombardy students.
+\par}
+
+% ------------------------------------------------
+% Work Experience
+% ------------------------------------------------
+
+\section{Work Experience}
+
+\textsc{Data Science} \& \textsc{GenAI} Intern,
+\textbf{Accenture}, Milan
+\hfill
+\cvdate{Jul 2026 - Sep 2026}
+
+\vspace{1pt}
+
+{\cvdetail
+\begin{cvitems}
+    \item Co-designed a Python monitoring and evaluation framework for 14 GenAI agents,
+    targeting approximately 80\% lower processing time.
+
+    \item Built a telemetry pipeline using the Azure Application Insights Python SDK
+    to retrieve and validate Microsoft Foundry traces, storing results in MySQL under
+    privacy constraints.
+
+    \item Independently built a hybrid Python/Foundry evaluator, cutting token use by
+    70\% versus a full LLM-judge baseline while improving quality and eliminating
+    hallucinated evaluations in testing.
+\end{cvitems}
+}
+
+% ------------------------------------------------
+% Projects
+% ------------------------------------------------
+
+\section{Projects}
+
+\textbf{Research on \textsc{Spiking Neural Networks}} \enspace $\cdot$ \enspace
+{\cvdetail
+\href{https://github.com/bainsa-bocconi/SNN_playground/blob/task_C_jacopo/lif_kernel/benchmark/README.md}
+{Benchmarks}
+\enspace$\cdot$\enspace
+\href{https://github.com/bainsa-bocconi/SNN_playground}
+{GitHub}
+}
+\hfill
+\cvdate{Mar 2026 - Present}
+
+{\cvdetail
+\begin{cvitems}
+    \item {Wrote a custom CUDA C kernel from scratch with CuPy RawKernel to simulate Leaky Integrate-and-Fire neuron dynamics, parallelizing state updates across GPU threads.}
+    \item {Designed a fused execution strategy that moved the full temporal recurrence on-device, achieving ~270× speedup over the NumPy CPU backend at 100k neurons on an NVIDIA T4.}
+    \item Characterized CPU–GPU crossover and dispatch overhead, showing that GPU acceleration becomes beneficial only beyond sufficient workload size and that stepwise execution is largely bottlenecked by kernel-launch overhead.
+\end{cvitems}
+}
+
+\entrygap
+
+\newpage
+\section{Projects (continued)}
+\textbf{Empirical Analysis of Global Organ Transplantation}
+\enspace $\cdot$ \enspace
+{\cvdetail
+\href{https://github.com/0jach/tidying-WHO-ONT-transplant-data/blob/main/HumanDevelopment_OrganTransplantation.pdf}
+{Report}
+\enspace$\cdot$\enspace
+\href{https://github.com/0jach/tidying-WHO-ONT-transplant-data}
+{GitHub}
+}
+\hfill
+\cvdate{Mar 2026 - Apr 2026}
+
+\vspace{1pt}
+
+{\cvdetail
+\begin{cvitems}
+    \item Engineered a cross-country analytical dataset by restructuring WHO
+    organ-transplant records, harmonizing external development indicators, and
+    explicitly separating observed zeros, missing values, and structurally
+    unavailable data.
+
+    \item Investigated missing-data structure and quantified the relationship between
+    human development and transplant activity using Pearson and Spearman correlations
+    across 122 countries.
+\end{cvitems}
+}
+
+\entrygap
+
+\textbf{SPX Volatility Forecasting and Downside Skew}
+\enspace $\cdot$ \enspace
+{\cvdetail
+\href{https://github.com/0jach/vrp-skew-analysis/blob/main/report.pdf}
+{Report}
+\enspace$\cdot$\enspace
+\href{https://github.com/0jach/vrp-skew-analysis}
+{GitHub}
+}
+\hfill
+\cvdate{Aug 2026 - Present}
+
+{\cvdetail
+\begin{cvitems}
+    \item Built a research pipeline combining daily SPX returns with a 30-day option
+    surface from 2005-2025, measuring downside skew and forecasting realized volatility
+    over the next 22 trading days.
+
+    \item Implemented leakage-safe, expanding-window HAR and HAR-X models and evaluated
+    4,865 pseudo-out-of-sample forecasts using bias, MAE, RMSE, skew terciles, and
+    Newey--West inference.
+
+    \item Found that adding skew to the conditional mean did not improve point forecasts,
+    while skew significantly predicted absolute and squared HAR errors ($p<0.001$),
+    suggesting value for forecasting uncertainty.
+\end{cvitems}
+}
+
+% ------------------------------------------------
+% Technical Skills
+% ------------------------------------------------
+
+\section{Technical Skills}
+
+{\cvdetail
+\begin{tabularx}{\linewidth}{
+    @{}
+    >{\raggedleft\arraybackslash}p{3.1cm}
+    Y
+    @{}
+}
+\textbf{Programming:}
+    & Python, R, C++, SQL, CUDA C \\[2pt]
+
+\textbf{ML \& Data:}
+    & PyTorch, TensorFlow, SciPy, NumPy, pandas, CuPy, Matplotlib, Sentence-Transformers, Tidyverse \\[2pt]
+
+\textbf{Stats \& Quant:}
+    & Regression analysis, hypothesis testing, time-series forecasting,
+      Monte Carlo simulation \\[2pt]
+
+\textbf{Tools \& Systems:}
+    & Git, Linux, pytest, Microsoft Foundry,
+      Azure Application Insights, vLLM \\[2pt]
+
+\textbf{Certifications:}
+    &
+    \href{https://openbadges.bestr.it/public/assertions/UwRxHjMsRUWQQ-UBDluy0A}
+    {\textsc{Text Mining and Sentiment Analysis}}
+    \quad | \quad
+    \href{https://openbadges.bestr.it/public/assertions/hZHVF31zRzKCyzmhcaujqw}
+    {\textsc{Linux for HPC}}
+\end{tabularx}
+}
+
+% ------------------------------------------------
+% Associations
+% ------------------------------------------------
+
+\section{Activities and Volunteering}
+
+\textbf{Project Division Member},
+\textsc{Bocconi AI \& Neuroscience Student Association}
+\hfill
+\cvdate{Since Oct 2025}
+
+{\cvdetail
+Selected for the project division of Italy's largest student-led AI research lab,
+contributing to technical projects.
+\par}
+
+\vspace{1pt}
+
+\textbf{Hackathon Participant},
+\textsc{BAINSA accessibility AI Hackathon}
+\hfill
+\cvdate{Sep 2026}
+
+{\cvdetail
+Co-developed a 12-hour sound-awareness prototype for Deaf and hard-of-hearing users,
+consisting of visual smart-glasses cues based on high-accuracy left/right localization and sound classification.
+\par}
+
+\vspace{1pt}
+
+\textbf{Staff Member},
+\textsc{Google Developer Groups Hackathon 2026}
+\hfill
+\cvdate{May 2026}
+
+{\cvdetail
+Supported the organization of a three-day hackathon with 150+ participants.
+\par}
+
+% ------------------------------------------------
+% Other
+% ------------------------------------------------
+
+\section{Other}
+
+{\cvdetail
+\begin{tabularx}{\linewidth}{
+    @{}
+    >{\raggedleft\arraybackslash}p{3.1cm}
+    Y
+    @{}
+}
+\textbf{Languages:}
+    & Italian (Native), English (Fluent) \\[2pt]
+
+\textbf{Interests:}
+    & Open-source software, mathematical paradoxes, basketball, chess
+\end{tabularx}
+}
+
+\end{document}
